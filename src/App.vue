@@ -30,36 +30,6 @@
       router-view
 </template>
 
-<style lang="scss">
-
-.demo-area {
-  display: inline-block;
-  max-height: 50px;
-  overflow: scroll;
-  background: green;
-  color: #fff;
-  padding: 12px;
-  margin: 12px;
-
-  &:nth-of-type(2n) {
-    background: blue;
-  }
-
-  &:nth-of-type(3n) {
-    background: red;
-  }
-}
-
-// .touch-fixes {
-//   overflow: scroll;
-//   overscroll-behavior-y: none;
-//   overflow-y: scroll;
-//   -webkit-overflow-scrolling: touch;
-//   touch-action: pan-y;
-// }
-
-</style>
-
 <script>
 import fullpagescroll from './mixins/fullpagescroll'
 
@@ -68,6 +38,17 @@ export default {
   mixins: [
     fullpagescroll
   ],
+
+  data: function() {
+    return {
+      pageNames: [
+        'Page1',
+        'Page2',
+        'Page3',
+        'Page4',
+      ]
+    }
+  }
 
 };
 </script>

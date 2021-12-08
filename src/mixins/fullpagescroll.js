@@ -140,14 +140,14 @@ export default {
       if (!this.router_locked) {
         setTimeout(() => {
           if (!this.router_locked) {
-            const currIndex = this.$router.options.routes.findIndex(
-              (x) => x.name === this.$route.name
+            const currIndex = this.pageNames.findIndex(
+              (x) => x === this.$route.name
             );
             const nextIndex = currIndex + dir;
-            const nextRoute = this.$router.options.routes[nextIndex] ?? false;
+            const nextRoute = this.pageNames[nextIndex] ?? false;
 
             if (nextRoute) {
-              this.$router.push({ name: nextRoute.name });
+              this.$router.push({ name: nextRoute });
             }
           }
         }, 100);

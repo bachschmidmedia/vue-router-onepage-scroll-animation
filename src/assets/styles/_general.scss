@@ -33,3 +33,32 @@ main {
   width: 100%;
   text-align: right;
 }
+
+
+// Demo Content
+
+.demo-area {
+  display: inline-block;
+  max-height: 50px;
+  overflow: scroll;
+  background: green;
+  color: #fff;
+  padding: 12px;
+  margin: 12px;
+
+  &:nth-of-type(2n) {
+    background: blue;
+  }
+
+  &:nth-of-type(3n) {
+    background: red;
+  }
+}
+
+// .touch-fixes {
+//   overflow: scroll;
+//   overscroll-behavior-y: none;
+//   overflow-y: scroll;
+//   -webkit-overflow-scrolling: touch;
+//   touch-action: pan-y;
+// }
