@@ -7,11 +7,11 @@
       router-link(to="/page4") P4 
       div Direction: {{ direction }}
 
-      div(style="max-height: 50px; overflow: scroll; background-color: red;" @wheel="preventWheel" @touchmove="preventWheel")
+      div(style="max-height: 50px; overflow: scroll; background-color: red; color: #fff;" @wheel="preventWheel" @touchmove="preventWheel")
         p(v-for="i in Array(20)") PREVENT ALL
 
-      div(style="max-height: 50px; overflow: scroll; background-color: blue;" @scroll="preventWheel")
-        p(v-for="i in Array(20)") PREVENT SCROLL
+      div(style="max-height: 50px; overflow: scroll; background-color: blue; color: #fff;" @scroll="preventWheel")
+        p(v-for="i in Array(20)") PREVENT SCROLL UNTIL REACHING TOP/BOTTOM
     transition(
       :name="direction > 0 ? 'slideinup' : 'slideindown'"
       mode="out-in"
