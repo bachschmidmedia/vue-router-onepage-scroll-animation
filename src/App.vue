@@ -15,8 +15,8 @@
 export default {
   data: function() {
     return {
-      wheelLocked: false,
       wheeling: null,
+      last_speed: 0,
     }
   },
   mounted: function () {
@@ -38,25 +38,19 @@ export default {
         speed = -(rawAmmount % 3 ? rawAmmount * 10 : rawAmmount / 3)
       }
 
-      if(Math.abs(speed) > 1.2) {
-        if (!this.wheelLocked) {
-          console.log(speed)
-          console.log(this.wheelLocked)
+      if(Math.abs(speed) > 1) {
+        if(Math.abs(speed) > Math.abs(this.last_speed) + 2) {
+          this.last_speed = speed
+          console.log('scroll to', speed)
         }
-        this.wheelLocked = true
       }
 
       clearTimeout(this.wheeling);
       this.wheeling = setTimeout(() => {
-        console.log('stop wheeling!')
         this.wheeling = undefined
-        this.wheelLocked = false
-      }, 250);
+        this.last_speed = 0
+      }, 100);
 
-
-      
-
-      return speed;
     },
   },
 };
