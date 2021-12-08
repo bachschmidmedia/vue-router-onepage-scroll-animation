@@ -5,9 +5,18 @@
       router-link(to="/page2") P2 
       router-link(to="/page3") P3 
       router-link(to="/page4") P4 
-    transition(name="slidein" mode="out-in")
+      div {{ direction }}
+    transition(
+      :name="direction > 0 ? 'slideinup' : 'slideindown'"
+      mode="out-in"
+      v-on:leave="onLeave"
+    )
       router-view
-    transition(name="slideout" mode="out-in")
+    transition(
+      :name="direction > 0 ? 'slideoutup' : 'slideoutdown'"
+      mode="out-in"
+      v-on:after-leave="afterLeave"
+    )
       router-view
 </template>
 
@@ -17,12 +26,22 @@ export default {
     return {
       wheeling: null,
       last_speed: 0,
+      router_locked: false,
+      direction: 1,
+
+      pages: [
+        'Page1',
+        'Page2',
+        'Page3',
+        'Page4',
+      ]
     }
   },
+
   mounted: function () {
-    window.addEventListener("mousewheel", this.wheel);
-    window.addEventListener("DOMMouseScroll", this.wheel);
-    window.addEventListener("wheel", this.wheel);
+    window.addEventListener("mousewheel", this.wheel)
+    window.addEventListener("DOMMouseScroll", this.wheel)
+    window.addEventListener("wheel", this.wheel)
   },
   methods: {
     wheel(event) {
@@ -42,6 +61,20 @@ export default {
         if(Math.abs(speed) > Math.abs(this.last_speed) + 2) {
           this.last_speed = speed
           console.log('scroll to', speed)
+
+          if(!this.router_locked) {
+            console.log('scroll!')
+
+            const currIndex = this.$router.options.routes.findIndex(x => x.name === this.$route.name)
+            this.direction = speed > 0 ? -1 : 1
+            const nextIndex = currIndex + this.direction
+            const nextRoute = this.$router.options.routes[nextIndex] ?? false
+
+            if(nextRoute) {
+              this.$router.push({name: nextRoute.name})
+            }
+
+          }
         }
       }
 
@@ -52,40 +85,85 @@ export default {
       }, 100);
 
     },
+
+    onLeave() {
+      console.log('onLeave')
+      this.router_locked = true
+    },
+
+    afterLeave() {
+      console.log('afterLeave')
+      this.router_locked = false
+    },
+
   },
 };
 </script>
 
 <style lang="scss">
-.slideout-leave-active {
+.slideoutup-leave-active {
   transition: 1s ease-in;
 }
-.slideout-leave-to {
+.slideoutup-leave-to {
   transform: translateY(-100%);
 }
-.slideout-leave-from {
+.slideoutup-leave-from {
   transform: translateY(0%);
 }
-.slideout-enter-active {
+.slideoutup-enter-active {
   transform: translateY(100%);
 }
-.slideout-enter-to {
+.slideoutup-enter-to {
   transform: translateY(0%);
 }
 
-.slidein-enter-active {
-  transition: 1s ease-out;
+.slideoutdown-leave-active {
+  transition: 1s ease-in;
 }
-.slidein-leave-to {
+.slideoutdown-leave-to {
+  transform: translateY(100%);
+}
+.slideoutdown-leave-from {
   transform: translateY(0%);
 }
-.slidein-leave-from {
+.slideoutdown-enter-active {
+  transform: translateY(-100%);
+}
+.slideoutdown-enter-to {
+  transform: translateY(0%);
+}
+
+.slideinup-enter-active {
+  transition: 1s ease-out;
+}
+.slideinup-leave-to {
+  transform: translateY(0%);
+}
+.slideinup-leave-from {
   transform: translateY(100%);
 }
-.slidein-enter-active {
+.slideinup-enter-active {
   transform: translateY(100%);
 }
-.slidein-enter-to {
+.slideinup-enter-to {
+  transform: translateY(0%);
+}
+
+
+
+.slideindown-enter-active {
+  transition: 1s ease-out;
+}
+.slideindown-leave-to {
+  transform: translateY(0%);
+}
+.slideindown-leave-from {
+  transform: translateY(-100%);
+}
+.slideindown-enter-active {
+  transform: translateY(-100%);
+}
+.slideindown-enter-to {
   transform: translateY(0%);
 }
 
@@ -107,7 +185,11 @@ main {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 1;
+  z-index: 2;
+
+  & + main {
+    z-index: 1;
+  }
 }
 
 #nav {
