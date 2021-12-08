@@ -46,7 +46,6 @@ export default {
     },
 
     preventTouch(e) {
-      // this.lockRouter();
       const target = e.target;
       const top = 0;
       const bottom = target.scrollHeight - target.clientHeight;
@@ -54,13 +53,11 @@ export default {
 
       switch (true) {
         case scroll <= top:
-          console.log('smaller top')
           this.direction = -1;
           this.tryScrollTo();
           break;
 
         case scroll >= bottom:
-          console.log('bigger bottom')
           this.direction = 1;
           this.tryScrollTo();
           break;
