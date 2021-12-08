@@ -38,46 +38,43 @@ export default {
   },
   methods: {
     lockRouter() {
-      this.router_locked = true;
+      this.router_locked = true
     },
 
     unlockRouter() {
-      this.router_locked = false;
+      this.router_locked = false
     },
 
     preventTouch(e) {
-      this.lockRouter();
-
+      // this.lockRouter();
       const target = e.target;
       const top = 0;
       const bottom = target.scrollHeight - target.clientHeight;
       const scroll = target.scrollTop;
 
+      switch (true) {
+        case scroll <= top:
+          console.log('smaller top')
+          this.direction = -1;
+          this.tryScrollTo();
+          break;
+
+        case scroll >= bottom:
+          console.log('bigger bottom')
+          this.direction = 1;
+          this.tryScrollTo();
+          break;
+
+        default:
+          this.lockRouter();
+          break;
+      }
+
       clearTimeout(this.preventer);
       this.preventer = setTimeout(() => {
-        switch (true) {
-          case scroll <= top:
-            console.log('smaller top')
-            this.unlockRouter();
-            this.direction = -1;
-            this.tryScrollTo();
-            break;
-  
-          case scroll >= bottom:
-            console.log('bigger bottom')
-            this.unlockRouter();
-            this.direction = 1;
-            this.tryScrollTo();
-            break;
-
-          default:
-            this.lockRouter();
-            break;
-        }
-
-        
         this.preventer = undefined;
         this.last_speed = 0;
+        this.unlockRouter();
       }, 250);
     },
 
