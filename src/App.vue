@@ -6,6 +6,8 @@
       router-link(to="/page3") P3 
       router-link(to="/page4") P4 
       div {{ direction }}
+      div(style="max-height: 50px; overflow: scroll;")
+        p(v-for="i in Array(100)") JO
     transition(
       :name="direction > 0 ? 'slideinup' : 'slideindown'"
       mode="out-in"
@@ -26,7 +28,6 @@ export default {
     return {
       wheeling: null,
       last_speed: 0,
-      router_locked: false,
       direction: 1,
 
       pages: [
@@ -42,9 +43,14 @@ export default {
     window.addEventListener("mousewheel", this.wheel)
     window.addEventListener("DOMMouseScroll", this.wheel)
     window.addEventListener("wheel", this.wheel)
+
   },
   methods: {
+
     wheel(event) {
+
+      if(this.router_locked) return
+
       let speed
       if (event.wheelDelta) {
         if ((event.wheelDelta % 120) - 0 == 0) {
