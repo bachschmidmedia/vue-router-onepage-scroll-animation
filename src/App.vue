@@ -9,7 +9,7 @@
 
       div(style="opacity:.5")
         .demo-area(@scroll="preventWheel" @touchstart="preventWheel")
-          p(v-for="i in Array(1)") PREVENT SMALL
+          p(v-for="i in Array(20)") PREVENT SMALL
 
         .demo-area.touch-fixes(@scroll="preventTouch")
           p(v-for="i in Array(20)") PREVENT SCROLL UNTIL REACHING TOP/BOTTOM
