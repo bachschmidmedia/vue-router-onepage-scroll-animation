@@ -7,7 +7,7 @@ import Page4 from '../views/Page4.vue'
 
 Vue.use(VueRouter)
 
-const routes = [
+let routes = [
   {
     path: '/',
     name: 'Page1',
@@ -28,6 +28,26 @@ const routes = [
     name: 'Page4',
     component: Page4
   },
+  {
+    path: '/page5',
+    name: 'Page5',
+    component: Page2
+  },
+  {
+    path: '/page6',
+    name: 'Page6',
+    component: Page3
+  },
+  {
+    path: '/page7',
+    name: 'Page7',
+    component: Page1
+  },
+  {
+    path: '/page8',
+    name: 'Page8',
+    component: Page2
+  },
   // {
   //   path: '/about',
   //   name: 'About',
@@ -37,6 +57,10 @@ const routes = [
   //   component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
   // }
 ]
+
+
+
+
 
 const router = new VueRouter({
   mode: 'history',

@@ -1,0 +1,41 @@
+
+// Slide out up
+.slideoutup-leave,
+.slideoutup-leave-active    {   transition: 1s ease-in;         }
+
+.slideoutup-leave-from      {   transform: translateY(0%);      }
+.slideoutup-leave-to        {   transform: translateY(-100%);   }
+
+.slideoutup-enter-active    {   transform: translateY(100%);    }
+.slideoutup-enter-to        {   transform: translateY(0%);      }
+
+// Slide out down
+.slideoutdown-leave,
+.slideoutdown-leave-active  {   transition: 1s ease-in;         }
+
+.slideoutdown-leave-from    {   transform: translateY(0%);      }
+.slideoutdown-leave-to      {   transform: translateY(100%);    }
+
+.slideoutdown-enter-active  {   transform: translateY(-100%);   }
+.slideoutdown-enter-to      {   transform: translateY(0%);      }
+
+// Slide in up
+.slideinup-enter,
+.slideinup-enter-active     {   transition: 1s ease-out;        }
+
+.slideinup-enter-active     {   transform: translateY(100%);    }
+.slideinup-enter-to         {   transform: translateY(0%);      }
+
+.slideinup-leave-from       {   transform: translateY(100%);    }
+.slideinup-leave-to         {   transform: translateY(0%);      }
+
+// Slide in down
+.slideindown-enter,
+.slideindown-enter-active   { transition: 1s ease-out;          }
+
+.slideindown-enter-active   { transform: translateY(-100%);     }
+.slideindown-enter-to       { transform: translateY(0%);        }
+
+.slideindown-leave-from     { transform: translateY(-100%);     }
+.slideindown-leave-to       { transform: translateY(0%);        }
+

@@ -1,0 +1,33 @@
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  /* Disables pull-to-refresh but allows overscroll glow effects. */
+  overscroll-behavior-y: contain;
+  overflow: hidden;
+}
+
+main {
+  padding: 50px 25px;
+  font: 18px helvetica;
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2;
+
+  & + main {
+    z-index: 1;
+  }
+}
+
+#nav {
+  position: fixed;
+  top: 0;
+  z-index: 9;
+}

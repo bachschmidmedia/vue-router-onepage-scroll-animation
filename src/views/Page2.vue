@@ -1,7 +1,7 @@
 <template lang="pug">
 main
   article
-    section Jo Page 2
+    section {{ $route.name }}
 </template>
 
 <script>
