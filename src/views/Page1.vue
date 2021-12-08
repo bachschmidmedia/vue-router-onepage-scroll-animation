@@ -1,7 +1,7 @@
 <template lang="pug">
 main
   article
-    section Jo Home
+    section Jo Page 1
 </template>
 
 <script>

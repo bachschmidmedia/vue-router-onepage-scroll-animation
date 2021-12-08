@@ -1,14 +1,14 @@
 <template lang="pug">
 main
   article
-    section Jo Page 2
+    section Jo Page 3
 </template>
 
 <script>
 // @ is an alias to /src
 
 export default {
-  name: 'Page2'
+  name: 'Page3'
 }
 </script>
 
