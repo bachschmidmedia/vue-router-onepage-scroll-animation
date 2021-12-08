@@ -75,7 +75,7 @@ export default {
         this.preventer = undefined;
         this.last_speed = 0;
         this.unlockRouter();
-      }, 250);
+      }, 500);
     },
 
     preventWheel() {
