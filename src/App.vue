@@ -49,7 +49,7 @@ export default {
 
     wheel(event) {
 
-      if(this.router_locked) return
+      // if(this.router_locked) return
 
       let speed
       if (event.wheelDelta) {
