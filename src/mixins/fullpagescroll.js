@@ -28,14 +28,17 @@ export default {
     };
   },
 
-  mounted: function () {
+  created: function() {
+    // Mousewheel events
     window.addEventListener("mousewheel", this.wheel);
     window.addEventListener("DOMMouseScroll", this.wheel);
     window.addEventListener("wheel", this.wheel);
 
+    // Touch events
     window.addEventListener("touchstart", this.touchStart);
     window.addEventListener("touchmove", this.touchMove);
   },
+
   methods: {
     lockRouter() {
       this.router_locked = true
