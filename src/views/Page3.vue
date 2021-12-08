@@ -1,7 +1,7 @@
 <template lang="pug">
 main
   article
-    section {{ $route.name }}
+    section(v-for="i in Array(25)") {{ $route.name }}
 </template>
 
 <script>

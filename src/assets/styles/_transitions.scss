@@ -6,8 +6,8 @@
 .slideoutup-leave-from      {   transform: translateY(0%);      }
 .slideoutup-leave-to        {   transform: translateY(-100%);   }
 
-.slideoutup-enter-active    {   transform: translateY(100%);    }
-.slideoutup-enter-to        {   transform: translateY(0%);      }
+.slideoutup-enter-active    {   transform: translateY(0%);    }
+.slideoutup-enter-to        {   transform: translateY(100%);      }
 
 // Slide out down
 .slideoutdown-leave,
@@ -16,8 +16,8 @@
 .slideoutdown-leave-from    {   transform: translateY(0%);      }
 .slideoutdown-leave-to      {   transform: translateY(100%);    }
 
-.slideoutdown-enter-active  {   transform: translateY(-100%);   }
-.slideoutdown-enter-to      {   transform: translateY(0%);      }
+.slideoutdown-enter-active  {   transform: translateY(0%);   }
+.slideoutdown-enter-to      {   transform: translateY(100%);      }
 
 // Slide in up
 .slideinup-enter,
