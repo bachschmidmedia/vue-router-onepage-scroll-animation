@@ -35,12 +35,12 @@ export default {
   },
 
   mounted () {
-    setTimeout(() => {
-      // console.log(this.$route)
-      console.log(this.$route.meta)
-      console.log(this.$router.currentRoute.meta)
-      console.log(this.$route.meta.fields?.pageType)
-    }, 200);
+    // setTimeout(() => {
+    //   console.log(this.$route)
+    //   console.log(this.$route.meta)
+    //   console.log(this.$router.currentRoute.meta)
+    //   console.log(this.$route.meta.fields?.pageType)
+    // }, 200);
   }
 };
 </script>
