@@ -1,6 +1,7 @@
 
 // Parents
-import Home from '@/views/pages/parents/Home.vue'
+// import Home from '@/views/pages/parents/Home.vue'
+import ScrollLayout from '@/views/layouts/ScrollLayout.vue'
 
 // Children
 import Page1 from '@/views/pages/children/Page1.vue'
@@ -10,20 +11,30 @@ import Page4 from '@/views/pages/children/Page4.vue'
 
 let routes = [
   {
-    path: '/',
+    path: '/home',
     name: 'Home',
-    component: Home,
-    meta: { id: 1 },
-  },
-  {
-    path: '/page1',
-    name: 'Page1',
-    component: Page1
-  },
-  {
-    path: '/page2',
-    name: 'Page2',
-    component: Page2
+    // component: Home,
+    component: ScrollLayout,
+    meta: {
+      routeNames: ['Page1', 'Page2', 'Page3', 'Page4']
+    },
+    children: [
+      {
+        path: 'page1',
+        name: 'Page1',
+        component: Page1,
+      },
+      {
+        path: 'page2',
+        name: 'Page2',
+        component: Page2
+      },
+      {
+        path: 'page3',
+        name: 'Page3',
+        component: Page3
+      },
+    ]
   },
   {
     path: '/page3',
@@ -33,7 +44,9 @@ let routes = [
   {
     path: '/page4',
     name: 'Page4',
-    component: Page4
+    component: Page4,
+    // component: ScrollLayout,
+    // children: [{path: '', component: Page4}]
   },
   {
     path: '/page5',

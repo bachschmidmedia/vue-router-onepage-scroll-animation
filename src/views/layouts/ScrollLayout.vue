@@ -28,10 +28,31 @@ import fullpagescroll from "@/mixins/fullpagescroll";
 export default {
   mixins: [fullpagescroll],
 
-  data: function () {
-    return {
-      pageNames: ["Page1", "Page2", "Page3", "Page4"],
-    };
+  // data: function () {
+  //   return {
+  //     pageNames: null
+  //   };
+  // },
+
+  created () {
+
+    // this.pageNames = this.$route?.meta?.pageNames
+
+    // this.$router.beforeEach((to, from, next) => {
+    //   // do something here
+    //   // document.title = route.meta.title;
+    //   console.log('to', to)
+    //   console.log('from', from)
+    //   next()
+    // })
+
+    console.log(this.$route.matched?.[0])
+
+    this.pageNames = this.$route.matched?.[0].meta.routeNames
+
+    // console.log('jo', this.$route)
+    // console.log('matched', this.$route.matched)
+    // console.log('META', this.$route.children)
   },
 
   mounted () {
