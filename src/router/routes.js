@@ -1,11 +1,22 @@
-import Page1 from '@/views/pages/Page1.vue'
-import Page2 from '@/views/pages/Page2.vue'
-import Page3 from '@/views/pages/Page3.vue'
-import Page4 from '@/views/pages/Page4.vue'
+
+// Parents
+import Home from '@/views/pages/parents/Home.vue'
+
+// Children
+import Page1 from '@/views/pages/children/Page1.vue'
+import Page2 from '@/views/pages/children/Page2.vue'
+import Page3 from '@/views/pages/children/Page3.vue'
+import Page4 from '@/views/pages/children/Page4.vue'
 
 let routes = [
   {
     path: '/',
+    name: 'Home',
+    component: Home,
+    meta: { id: 1 },
+  },
+  {
+    path: '/page1',
     name: 'Page1',
     component: Page1
   },
