@@ -3,6 +3,7 @@
 // import Home from '@/views/pages/parents/Home.vue'
 import ScrollLayout from '@/views/layouts/ScrollLayout.vue'
 
+
 // Children
 import Page1 from '@/views/pages/children/Page1.vue'
 import Page2 from '@/views/pages/children/Page2.vue'

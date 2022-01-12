@@ -71,27 +71,27 @@ export default {
     },
   },
 
-  created() {
+  created () {
     this.initRouteNames();
   },
 
-  mounted() {
+  mounted () {
     this.addAllEvents();
   },
 
-  beforeRouteUpdate(to, from, next) {
+  beforeRouteUpdate (to, from, next) {
     const pages = this.pageNames
     const dir = pages.indexOf(from.name) < pages.indexOf(to.name) ? 1 : -1
     this.direction = dir
     next();
   },
 
-  beforeDestroy() {
+  beforeDestroy () {
     this.removeAllEvents();
   },
 
   methods: {
-    initRouteNames() {
+    initRouteNames () {
       const names = this.$route?.matched?.find((e) => e.meta?.routeNames)?.meta
         ?.routeNames;
       if (names) {
@@ -99,28 +99,28 @@ export default {
       }
     },
 
-    addAllEvents() {
+    addAllEvents () {
       this.events.forEach((e) => {
         window.addEventListener(e.name, e.function);
       });
     },
 
-    removeAllEvents() {
+    removeAllEvents () {
       this.events.forEach((e) => {
         window.removeEventListener(e.name, e.function);
       });
     },
 
-    lockRouter() {
+    lockRouter () {
       this.router_locked = true;
     },
 
-    unlockRouter() {
+    unlockRouter () {
       this.direction = 0;
       this.router_locked = false;
     },
 
-    preventTouch(e) {
+    preventTouch (e) {
       const target = e.target;
       const top = 0;
       const bottom = target.scrollHeight - target.clientHeight;
@@ -150,7 +150,7 @@ export default {
       }, 500);
     },
 
-    preventWheel() {
+    preventWheel () {
       this.lockRouter();
 
       clearTimeout(this.preventer);
@@ -161,11 +161,11 @@ export default {
       }, 250);
     },
 
-    touchStart(e) {
+    touchStart (e) {
       this.ts = e.touches[0].clientY;
     },
 
-    touchMove(e) {
+    touchMove (e) {
       var te = e.changedTouches[0].clientY;
       if (this.ts > te + 5) {
         const dir = 1;
@@ -178,7 +178,7 @@ export default {
       }
     },
 
-    wheel(event) {
+    wheel (event) {
       // if(this.router_locked) return
       let speed;
       if (event.wheelDelta) {
@@ -208,7 +208,7 @@ export default {
       }, 100);
     },
 
-    tryScrollTo() {
+    tryScrollTo () {
       if (!this.router_locked) {
         const dir = this.direction
         setTimeout(() => {
@@ -227,11 +227,11 @@ export default {
       }
     },
 
-    onLeave() {
+    onLeave () {
       this.lockRouter();
     },
 
-    afterLeave() {
+    afterLeave () {
       this.unlockRouter();
     },
   },
