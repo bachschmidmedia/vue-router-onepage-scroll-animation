@@ -203,6 +203,7 @@ export default {
     },
 
     tryScrollTo(dir = this.direction) {
+      console.log(dir)
       if (!this.router_locked) {
         setTimeout(() => {
           if (!this.router_locked) {
