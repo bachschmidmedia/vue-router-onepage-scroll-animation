@@ -2,6 +2,8 @@
 main
   article
     section {{ $route.name }}
+    router-link(:to="{name: 'Page1'}") Page 1
+    router-link(:to="{name: 'Page3'}") Page 3
 </template>
 
 <script>

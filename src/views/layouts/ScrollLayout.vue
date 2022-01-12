@@ -73,13 +73,7 @@ export default {
   },
 
   created () {
-    const names = this.$route?.matched?.find(e => e.meta?.routeNames)?.meta?.routeNames
-
-    if(names) this.pageNames = names
-
-    // console.log('jo', this.$route)
-    // console.log('matched', this.$route.matched)
-    // console.log('META', this.$route.children)
+    this.initRouteNames()
   },
 
   mounted () {
@@ -92,6 +86,13 @@ export default {
 
 
   methods: {
+
+    initRouteNames () {
+      const names = this.$route?.matched?.find(e => e.meta?.routeNames)?.meta?.routeNames
+      if(names) {
+        this.pageNames = names
+      }
+    },
 
     addAllEvents () {
       this.events.forEach(e => {
