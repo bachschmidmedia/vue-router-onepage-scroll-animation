@@ -2,6 +2,7 @@
 main
   article
     section {{ $route.name }}
+      router-link(:to="{name: 'Page1'}") page 1
 </template>
 
 <script>
