@@ -20,11 +20,12 @@
     v-on:after-leave="afterLeave"
   )
     router-view
+
+  .debug
+    | Jo debug
 </template>
 
 <script>
-
-
 // window.addEventListener('scroll', async () => {
 //   await new Promise(resolve => window.requestAnimationFrame(resolve))
 //   const {
@@ -45,15 +46,13 @@
 //   }
 // })
 
-
-
 export default {
   data: function () {
     return {
       wheeling: null,
       preventer: null,
       last_speed: 0,
-      direction: 1,
+      direction: 0,
     };
   },
 
@@ -61,57 +60,64 @@ export default {
     events: function () {
       return [
         // Mousewheel events
-        { name: 'mousewheel', function: this.wheel },
-        { name: 'DOMMouseScroll', function: this.wheel },
-        { name: 'wheel', function: this.wheel },
+        { name: "mousewheel", function: this.wheel },
+        { name: "DOMMouseScroll", function: this.wheel },
+        { name: "wheel", function: this.wheel },
 
         // Touch events
-        { name: 'touchstart', function: this.touchStart },
-        { name: 'touchmove', function: this.touchMove },
-      ]
+        { name: "touchstart", function: this.touchStart },
+        { name: "touchmove", function: this.touchMove },
+      ];
     },
   },
 
-  created () {
-    this.initRouteNames()
+  created() {
+    this.initRouteNames();
   },
 
-  mounted () {
-    this.addAllEvents()
+  mounted() {
+    this.addAllEvents();
+  },
+
+  beforeRouteUpdate(to, from, next) {
+    const pages = this.pageNames
+    const dir = pages.indexOf(from.name) < pages.indexOf(to.name) ? 1 : -1
+    this.direction = dir
+    next();
   },
 
   beforeDestroy() {
-    this.removeAllEvents()
+    this.removeAllEvents();
   },
 
-
   methods: {
-
-    initRouteNames () {
-      const names = this.$route?.matched?.find(e => e.meta?.routeNames)?.meta?.routeNames
-      if(names) {
-        this.pageNames = names
+    initRouteNames() {
+      const names = this.$route?.matched?.find((e) => e.meta?.routeNames)?.meta
+        ?.routeNames;
+      if (names) {
+        this.pageNames = names;
       }
     },
 
-    addAllEvents () {
-      this.events.forEach(e => {
+    addAllEvents() {
+      this.events.forEach((e) => {
         window.addEventListener(e.name, e.function);
-      })
+      });
     },
 
-    removeAllEvents () {
-      this.events.forEach(e => {
+    removeAllEvents() {
+      this.events.forEach((e) => {
         window.removeEventListener(e.name, e.function);
-      })
+      });
     },
 
     lockRouter() {
-      this.router_locked = true
+      this.router_locked = true;
     },
 
     unlockRouter() {
-      this.router_locked = false
+      this.direction = 0;
+      this.router_locked = false;
     },
 
     preventTouch(e) {
@@ -164,11 +170,11 @@ export default {
       if (this.ts > te + 5) {
         const dir = 1;
         this.direction = dir;
-        this.tryScrollTo(1);
+        this.tryScrollTo();
       } else if (this.ts < te - 5) {
         const dir = -1;
         this.direction = dir;
-        this.tryScrollTo(-1);
+        this.tryScrollTo();
       }
     },
 
@@ -192,7 +198,7 @@ export default {
       ) {
         this.last_speed = speed;
         this.direction = speed > 0 ? -1 : 1;
-        this.tryScrollTo(this.direction);
+        this.tryScrollTo();
       }
 
       clearTimeout(this.wheeling);
@@ -202,9 +208,9 @@ export default {
       }, 100);
     },
 
-    tryScrollTo(dir = this.direction) {
-      console.log(dir)
+    tryScrollTo() {
       if (!this.router_locked) {
+        const dir = this.direction
         setTimeout(() => {
           if (!this.router_locked) {
             const currIndex = this.pageNames.findIndex(
@@ -229,6 +235,16 @@ export default {
       this.unlockRouter();
     },
   },
-
 };
 </script>
+
+<style lang="scss" scoped>
+.debug {
+  position: fixed;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+  background: blue;
+  color: white;
+}
+</style>
