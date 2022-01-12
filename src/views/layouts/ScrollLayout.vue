@@ -54,63 +54,57 @@ export default {
       preventer: null,
       last_speed: 0,
       direction: 1,
-
-      // Events
-      events: {
-        // Mousewheel events
-        mousewheel: null,
-        DOMMouseScroll: null,
-        wheel: null,
-
-        // Touch events
-        touchstart: null,
-        touchmove: null, 
-      }
     };
   },
 
+  computed: {
+    events: function () {
+      return [
+        // Mousewheel events
+        { name: 'mousewheel', function: this.wheel },
+        { name: 'DOMMouseScroll', function: this.wheel },
+        { name: 'wheel', function: this.wheel },
+
+        // Touch events
+        { name: 'touchstart', function: this.touchStart },
+        { name: 'touchmove', function: this.touchMove },
+      ]
+    },
+  },
+
   created () {
+    const names = this.$route?.matched?.find(e => e.meta?.routeNames)?.meta?.routeNames
 
-    console.log('CREATED')
-
-    // Mousewheel events
-    this.events.mousewheel = window.addEventListener("mousewheel", this.wheel);
-    this.events.DOMMouseScroll = window.addEventListener("DOMMouseScroll", this.wheel);
-    this.events.wheel = window.addEventListener("wheel", this.wheel);
-
-    // Touch events
-    this.events.touchstart = window.addEventListener("touchstart", this.touchStart);
-    this.events.touchmove = window.addEventListener("touchmove", this.touchMove);
-
-    // this.pageNames = this.$route?.meta?.pageNames
-
-    // this.$router.beforeEach((to, from, next) => {
-    //   // do something here
-    //   // document.title = route.meta.title;
-    //   console.log('to', to)
-    //   console.log('from', from)
-    //   next()
-    // })
-
-    console.log(this.$route.matched?.[0])
-
-    this.pageNames = this.$route.matched?.[0].meta.routeNames
+    if(names) this.pageNames = names
 
     // console.log('jo', this.$route)
     // console.log('matched', this.$route.matched)
     // console.log('META', this.$route.children)
   },
 
+  mounted () {
+    this.addAllEvents()
+  },
+
   beforeDestroy() {
-    window.removeEventListener("mousewheel", this.wheel);
-    window.removeEventListener("DOMMouseScroll", this.wheel);
-    window.removeEventListener("wheel", this.wheel);
-    window.removeEventListener("touchstart", this.touchStart);
-    window.removeEventListener("touchmove", this.touchMove);
+    this.removeAllEvents()
   },
 
 
   methods: {
+
+    addAllEvents () {
+      this.events.forEach(e => {
+        window.addEventListener(e.name, e.function);
+      })
+    },
+
+    removeAllEvents () {
+      this.events.forEach(e => {
+        window.removeEventListener(e.name, e.function);
+      })
+    },
+
     lockRouter() {
       this.router_locked = true
     },
