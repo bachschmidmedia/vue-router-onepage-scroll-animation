@@ -1,92 +1,56 @@
+
+@mixin transition_function(
+  $sName, // slideX or slideY ...
+  $sTime, // out or in
+  $sDir, // back or next
+  $transition, //  1s ease-in
+  $property, // transform
+  $leave-from, 
+  $leave-to, 
+  $enter-active, 
+  $enter-to
+) {
+
+  @if $sTime == 'out' {
+    .#{$sName}_#{$sTime}_#{$sDir}-leave, 
+    .#{$sName}_#{$sTime}_#{$sDir}-leave-active    {   transition: $transition;         }
+    
+    .#{$sName}_#{$sTime}_#{$sDir}-leave-from      {   #{$property}: $leave-from      }
+    .#{$sName}_#{$sTime}_#{$sDir}-leave-to        {   #{$property}: $leave-to  }
+    
+    .#{$sName}_#{$sTime}_#{$sDir}-enter-active    {   #{$property}: $enter-active    }
+    .#{$sName}_#{$sTime}_#{$sDir}-enter-to        {   #{$property}: $enter-to      }
+  } 
+  
+  @if $sTime == 'in' {
+    .#{$sName}_#{$sTime}_#{$sDir}-enter, 
+    .#{$sName}_#{$sTime}_#{$sDir}-enter-active    {   transition: $transition;         }
+    
+    .#{$sName}_#{$sTime}_#{$sDir}-enter-active      {   #{$property}: $leave-from      }
+    .#{$sName}_#{$sTime}_#{$sDir}-enter-to        {   #{$property}: $leave-to  }
+    
+    .#{$sName}_#{$sTime}_#{$sDir}-leave-from    {   #{$property}: $enter-active    }
+    .#{$sName}_#{$sTime}_#{$sDir}-leave-to        {   #{$property}: $enter-to      }
+  }
+
+
+}
+
+
+
 /* ================================
 ============ Slide Y ==============
 ================================ */
 // Slide out back
-.slideY_out_back-leave,
-.slideY_out_back-leave-active    {   transition: 1s ease-in;         }
+@include transition_function('slideY', 'out', 'back', 1s ease-in, transform, translateY(0%), translateY(-100%), translateY(0%), translateY(100%));
+@include transition_function('slideY', 'out', 'next', 1s ease-in, transform, translateY(0%), translateY(100%), translateY(0%), translateY(100%));
+@include transition_function('slideY', 'in', 'back', 1s ease-out, transform, translateY(100%), translateY(0%), translateY(100%), translateY(0%));
+@include transition_function('slideY', 'in', 'next', 1s ease-out, transform, translateY(-100%), translateY(0%), translateY(-100%), translateY(0%));
 
-.slideY_out_back-leave-from      {   transform: translateY(0%);      }
-.slideY_out_back-leave-to        {   transform: translateY(-100%);   }
-
-.slideY_out_back-enter-active    {   transform: translateY(0%);    }
-.slideY_out_back-enter-to        {   transform: translateY(100%);      }
-
-// Slide out next
-.slideY_out_next-leave,
-.slideY_out_next-leave-active  {   transition: 1s ease-in;         }
-
-.slideY_out_next-leave-from    {   transform: translateY(0%);      }
-.slideY_out_next-leave-to      {   transform: translateY(100%);    }
-
-.slideY_out_next-enter-active  {   transform: translateY(0%);   }
-.slideY_out_next-enter-to      {   transform: translateY(100%);      }
-
-// Slide in back
-.slideY_in_back-enter,
-.slideY_in_back-enter-active     {   transition: 1s ease-out;        }
-
-.slideY_in_back-enter-active     {   transform: translateY(100%);    }
-.slideY_in_back-enter-to         {   transform: translateY(0%);      }
-
-.slideY_in_back-leave-from       {   transform: translateY(100%);    }
-.slideY_in_back-leave-to         {   transform: translateY(0%);      }
-
-// Slide in next
-.slideY_in_next-enter,
-.slideY_in_next-enter-active   { transition: 1s ease-out;          }
-
-.slideY_in_next-enter-active   { transform: translateY(-100%);     }
-.slideY_in_next-enter-to       { transform: translateY(0%);        }
-
-.slideY_in_next-leave-from     { transform: translateY(-100%);     }
-.slideY_in_next-leave-to       { transform: translateY(0%);        }
-
-
-
-
-
-/* ================================
-============ Slide X ==============
-================================ */
-// Slide out back
-.slideX_out_back-leave,
-.slideX_out_back-leave-active    {   transition: 1s ease-in;         }
-
-.slideX_out_back-leave-from      {   transform: translateX(0%);      }
-.slideX_out_back-leave-to        {   transform: translateX(-100%);   }
-
-.slideX_out_back-enter-active    {   transform: translateX(0%);    }
-.slideX_out_back-enter-to        {   transform: translateX(100%);      }
-
-// Slide out next
-.slideX_out_next-leave,
-.slideX_out_next-leave-active  {   transition: 1s ease-in;         }
-
-.slideX_out_next-leave-from    {   transform: translateX(0%);      }
-.slideX_out_next-leave-to      {   transform: translateX(100%);    }
-
-.slideX_out_next-enter-active  {   transform: translateX(0%);   }
-.slideX_out_next-enter-to      {   transform: translateX(100%);      }
-
-// Slide in back
-.slideX_in_back-enter,
-.slideX_in_back-enter-active     {   transition: 1s ease-out;        }
-
-.slideX_in_back-enter-active     {   transform: translateX(100%);    }
-.slideX_in_back-enter-to         {   transform: translateX(0%);      }
-
-.slideX_in_back-leave-from       {   transform: translateX(100%);    }
-.slideX_in_back-leave-to         {   transform: translateX(0%);      }
-
-// Slide in next
-.slideX_in_next-enter,
-.slideX_in_next-enter-active   { transition: 1s ease-out;          }
-
-.slideX_in_next-enter-active   { transform: translateX(-100%);     }
-.slideX_in_next-enter-to       { transform: translateX(0%);        }
-
-.slideX_in_next-leave-from     { transform: translateX(-100%);     }
-.slideX_in_next-leave-to       { transform: translateX(0%);        }
+@include transition_function('slideX', 'out', 'back', 1s ease-in, transform, translateX(0%), translateX(-100%), translateX(0%), translateX(100%));
+@include transition_function('slideX', 'out', 'next', 1s ease-in, transform, translateX(0%), translateX(100%), translateX(0%), translateX(100%));
+@include transition_function('slideX', 'in', 'back', 1s ease-out, transform, translateX(100%), translateX(0%), translateX(100%), translateX(0%));
+@include transition_function('slideX', 'in', 'next', 1s ease-out, transform, translateX(-100%), translateX(0%), translateX(-100%), translateX(0%));
 
 
 
