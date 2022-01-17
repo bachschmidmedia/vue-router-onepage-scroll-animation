@@ -9,6 +9,7 @@ import Page1 from '@/views/pages/children/Page1.vue'
 import Page2 from '@/views/pages/children/Page2.vue'
 import Page3 from '@/views/pages/children/Page3.vue'
 import Page4 from '@/views/pages/children/Page4.vue'
+import Page5 from '@/views/pages/children/Page2.vue'
 
 let routes = [
   {
@@ -32,14 +33,27 @@ let routes = [
         path: 'page2',
         name: 'Page2',
         component: Page2,
-        meta: {
-          transition: 'slideX',
-        }
       },
       {
         path: 'page3',
         name: 'Page3',
         component: Page3,
+        meta: {
+          transition: 'slideX',
+        }
+      },
+      {
+        path: 'page4',
+        name: 'Page4',
+        component: Page4,
+        meta: {
+          transition: 'slideX',
+        }
+      },
+      {
+        path: 'page5',
+        name: 'Page5',
+        component: Page5,
         meta: {
           transition: 'slideX',
         }
