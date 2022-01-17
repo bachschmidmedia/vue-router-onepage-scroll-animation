@@ -9,13 +9,13 @@
       p(v-for="i in Array(20)") PREVENT ALL
 
   transition(
-    :name="direction > 0 ? 'slideinup' : 'slideindown'",
+    :name="getTransition('in')",
     mode="out-in",
     v-on:leave="onLeave"
   )
     router-view
   transition(
-    :name="direction > 0 ? 'slideoutup' : 'slideoutdown'",
+    :name="getTransition('out')",
     mode="out-in",
     v-on:after-leave="afterLeave"
   )
@@ -91,6 +91,14 @@ export default {
   },
 
   methods: {
+
+    getTransition (when) {
+      const trans = this.$route?.meta?.transition ?? 'slideY'
+      const dir = this.direction > 0 ? 'back' : 'next'
+
+      return `${trans}_${when}_${dir}`
+    },
+
     initRouteNames () {
       const names = this.$route?.matched?.find((e) => e.meta?.routeNames)?.meta
         ?.routeNames;

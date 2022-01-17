@@ -24,16 +24,25 @@ let routes = [
         path: 'page1',
         name: 'Page1',
         component: Page1,
+        meta: {
+          transition: 'slideX',
+        }
       },
       {
         path: 'page2',
         name: 'Page2',
-        component: Page2
+        component: Page2,
+        meta: {
+          transition: 'slideX',
+        }
       },
       {
         path: 'page3',
         name: 'Page3',
-        component: Page3
+        component: Page3,
+        meta: {
+          transition: 'slideX',
+        }
       },
     ]
   },
