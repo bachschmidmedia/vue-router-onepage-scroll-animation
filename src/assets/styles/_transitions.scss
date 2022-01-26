@@ -5,34 +5,24 @@
   $sDir, // back or next
   $transition, //  1s ease-in
   $property, // transform
-  $leave-from, 
-  $leave-to, 
-  $enter-active, 
-  $enter-to
+  $from,
+  $to,
+  $orig
 ) {
+  .#{$sName}_#{$sTime}_#{$sDir}-enter-active,
+  .#{$sName}_#{$sTime}_#{$sDir}-leave-from    {   #{$property}: $from }
 
   @if $sTime == 'out' {
-    .#{$sName}_#{$sTime}_#{$sDir}-leave, 
-    .#{$sName}_#{$sTime}_#{$sDir}-leave-active    {   transition: $transition;         }
-    
-    .#{$sName}_#{$sTime}_#{$sDir}-leave-from      {   #{$property}: $leave-from      }
-    .#{$sName}_#{$sTime}_#{$sDir}-leave-to        {   #{$property}: $leave-to  }
-    
-    .#{$sName}_#{$sTime}_#{$sDir}-enter-active    {   #{$property}: $enter-active    }
-    .#{$sName}_#{$sTime}_#{$sDir}-enter-to        {   #{$property}: $enter-to      }
+    .#{$sName}_#{$sTime}_#{$sDir}-leave-active  {   transition: $transition; }
+    .#{$sName}_#{$sTime}_#{$sDir}-leave-to      {   #{$property}: $to }
+    .#{$sName}_#{$sTime}_#{$sDir}-enter-to      {   #{$property}: $orig }
   } 
   
   @if $sTime == 'in' {
-    .#{$sName}_#{$sTime}_#{$sDir}-enter, 
-    .#{$sName}_#{$sTime}_#{$sDir}-enter-active    {   transition: $transition;         }
-    
-    .#{$sName}_#{$sTime}_#{$sDir}-enter-active      {   #{$property}: $leave-from      }
-    .#{$sName}_#{$sTime}_#{$sDir}-enter-to        {   #{$property}: $leave-to  }
-    
-    .#{$sName}_#{$sTime}_#{$sDir}-leave-from    {   #{$property}: $enter-active    }
-    .#{$sName}_#{$sTime}_#{$sDir}-leave-to        {   #{$property}: $enter-to      }
+    .#{$sName}_#{$sTime}_#{$sDir}-enter-active  {   transition: $transition; }
+    .#{$sName}_#{$sTime}_#{$sDir}-enter-to      {   #{$property}: $to }
+    .#{$sName}_#{$sTime}_#{$sDir}-leave-to      {   #{$property}: $orig }
   }
-
 
 }
 
@@ -42,15 +32,15 @@
 ============ Slide Y ==============
 ================================ */
 // Slide out back
-@include transition_function('slideY', 'out', 'back', 1s ease-in, transform, translateY(0%), translateY(-100%), translateY(0%), translateY(100%));
-@include transition_function('slideY', 'out', 'next', 1s ease-in, transform, translateY(0%), translateY(100%), translateY(0%), translateY(100%));
-@include transition_function('slideY', 'in', 'back', 1s ease-out, transform, translateY(100%), translateY(0%), translateY(100%), translateY(0%));
-@include transition_function('slideY', 'in', 'next', 1s ease-out, transform, translateY(-100%), translateY(0%), translateY(-100%), translateY(0%));
+@include transition_function('slideY', 'out', 'back', 1s ease-in, transform, translateY(0%), translateY(-100%), translateY(100%));
+@include transition_function('slideY', 'out', 'next', 1s ease-in, transform, translateY(0%), translateY(100%), translateY(100%));
+@include transition_function('slideY', 'in', 'back', 1s ease-out, transform, translateY(100%), translateY(0%), translateY(0%));
+@include transition_function('slideY', 'in', 'next', 1s ease-out, transform, translateY(-100%), translateY(0%), translateY(0%));
 
-@include transition_function('slideX', 'out', 'back', 1s ease-in, transform, translateX(0%), translateX(-100%), translateX(0%), translateX(100%));
-@include transition_function('slideX', 'out', 'next', 1s ease-in, transform, translateX(0%), translateX(100%), translateX(0%), translateX(100%));
-@include transition_function('slideX', 'in', 'back', 1s ease-out, transform, translateX(100%), translateX(0%), translateX(100%), translateX(0%));
-@include transition_function('slideX', 'in', 'next', 1s ease-out, transform, translateX(-100%), translateX(0%), translateX(-100%), translateX(0%));
+@include transition_function('slideX', 'out', 'back', 1s ease-in, transform, translateX(0%), translateX(-100%), translateX(100%));
+@include transition_function('slideX', 'out', 'next', 1s ease-in, transform, translateX(0%), translateX(100%), translateX(100%));
+@include transition_function('slideX', 'in', 'back', 1s ease-out, transform, translateX(100%), translateX(0%), translateX(0%));
+@include transition_function('slideX', 'in', 'next', 1s ease-out, transform, translateX(-100%), translateX(0%), translateX(0%));
 
 
 
