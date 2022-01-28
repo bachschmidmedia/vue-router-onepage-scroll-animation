@@ -26,7 +26,8 @@ let routes = [
         name: 'Page1',
         component: Page1,
         meta: {
-          transition: 'slideX',
+          // transition: 'slideX',
+          transition: 'fade',
         }
       },
       {
@@ -39,7 +40,8 @@ let routes = [
         name: 'Page3',
         component: Page3,
         meta: {
-          transition: 'slideX',
+          // transition: 'slideX',
+          transition: 'fade',
         }
       },
       {
@@ -47,7 +49,8 @@ let routes = [
         name: 'Page4',
         component: Page4,
         meta: {
-          transition: 'slideX',
+          // transition: 'slideX',
+          transition: 'fade',
         }
       },
       {
