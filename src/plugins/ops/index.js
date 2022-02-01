@@ -1,4 +1,4 @@
-const Ops = {
+export default {
     install(Vue, options) {
         const ops = {
             debug: false,
@@ -6,14 +6,8 @@ const Ops = {
         }
         Vue.prototype.$ops = ops
     },
-};
-
-export { Ops }
+}
 
 const OpsLayout =  () => import('@/plugins/ops/OpsLayout.vue')
-
 export { OpsLayout }
-
-// export default OpsLayout = () => import('@/plugins/ops/OpsLayout.vue')
-
 
