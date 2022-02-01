@@ -26,25 +26,6 @@
 </template>
 
 <script>
-// window.addEventListener('scroll', async () => {
-//   await new Promise(resolve => window.requestAnimationFrame(resolve))
-//   const {
-//     scrollTop,
-//     scrollLeft,
-//     scrollHeight,
-//     clientHeight
-//   } = this
-//   const atTop = scrollTop === 0
-//   const beforeTop = 1
-//   const atBottom = scrollTop === scrollHeight - clientHeight
-//   const beforeBottom = scrollHeight - clientHeight - 1
-
-//   if (atTop) {
-//     this.scrollTo(scrollLeft, beforeTop)
-//   } else if (atBottom) {
-//     this.scrollTo(scrollLeft, beforeBottom)
-//   }
-// })
 
 export default {
   data: function () {
