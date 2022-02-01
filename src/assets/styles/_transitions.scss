@@ -41,8 +41,8 @@
 @include transition_function('slideX', 'in', 'back', 1s ease-out, transform, translateX(100%), translateX(0%), translateX(0%));
 @include transition_function('slideX', 'in', 'next', 1s ease-out, transform, translateX(-100%), translateX(0%), translateX(0%));
 
-@include transition_function('fade', 'out', 'back', 1s ease-in, opacity, 1, 0, 0);
-@include transition_function('fade', 'out', 'next', 1s ease-in, opacity, 1, 0, 0);
+@include transition_function('fade', 'out', 'back', 1s ease-in, opacity, 1, 1, 1);
+@include transition_function('fade', 'out', 'next', 1s ease-in, opacity, 1, 1, 1);
 @include transition_function('fade', 'in', 'back', 1s ease-out, opacity, 0, 1, 1);
 @include transition_function('fade', 'in', 'next', 1s ease-out, opacity, 0, 1, 1);
 
