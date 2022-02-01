@@ -1,11 +1,15 @@
 <template lang="pug">
 .debug
-  .demo-area(@scroll="$ops.preventWheel", @touchstart="$ops.preventWheel")
+  .demo-area(@scroll="$ops.preventWheel" @touchstart="$ops.preventWheel")
     p(v-for="i in Array(20)") PREVENT SMALL
   .demo-area.touch-fixes(@scroll="$ops.preventTouch")
     p(v-for="i in Array(20)") PREVENT SCROLL UNTIL REACHING TOP/BOTTOM
-  .demo-area(@wheel="$ops.preventWheel", @touchmove="$ops.preventWheel")
+  .demo-area(@wheel="$ops.preventWheel" @touchmove="$ops.preventWheel")
     p(v-for="i in Array(20)") PREVENT ALL
+  .demo-area(v-prevent-scroll)
+    p(v-for="i in Array(20)") DIRECTIVE SCROLLI
+  .demo-area(v-prevent-all)
+    p(v-for="i in Array(20)") DIRECTIVE PREV ALL
 </template>
 
 <style lang="scss" scoped>
