@@ -9,6 +9,10 @@ body {
   /* Disables pull-to-refresh but allows overscroll glow effects. */
   overscroll-behavior-y: contain;
   overflow: hidden;
+
+  // Invert
+  background-color: #000;
+  filter: invert(1);
 }
 
 main {
@@ -22,9 +26,9 @@ main {
   z-index: 2;
   overflow: hidden;
 
-  & + main {
-    z-index: 1;
-  }
+  // & + main {
+  //   z-index: 1;
+  // }
 }
 
 #nav {

@@ -49,7 +49,7 @@ let routes = [
         component: Page4,
         meta: {
           // transition: 'slideX',
-          transition: 'fade',
+          // transition: 'fade',
         }
       },
       {
@@ -57,7 +57,7 @@ let routes = [
         name: 'Page5',
         component: Page5,
         meta: {
-          transition: 'slideX',
+          // transition: 'slideX',
         }
       },
     ]

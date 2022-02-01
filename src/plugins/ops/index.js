@@ -9,4 +9,3 @@ export default {
 
 const OpsLayout =  () => import('@/plugins/ops/OpsLayout.vue')
 export { OpsLayout }
-

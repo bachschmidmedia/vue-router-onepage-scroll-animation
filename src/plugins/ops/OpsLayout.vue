@@ -12,7 +12,6 @@
 import debug from "./components/debug.vue"
 
 export default {
-
   components: {
     debug
   },
