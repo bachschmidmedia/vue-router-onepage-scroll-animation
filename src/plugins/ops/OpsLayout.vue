@@ -1,25 +1,22 @@
 <template lang="pug">
 .scroll-layout
-  transition(:name="getTransition('in')", mode="out-in", v-on:leave="onLeave")
+  transition(:name="getTransition('in')" mode="out-in" v-on:leave="onLeave")
     router-view
-  transition(
-    :name="getTransition('out')",
-    mode="out-in",
-    v-on:after-leave="afterLeave"
-  )
+  transition(:name="getTransition('out')" mode="out-in" v-on:after-leave="afterLeave")
     router-view
 
-  .debug(v-if="$ops.debug")
-    .demo-area(@scroll="preventWheel", @touchstart="preventWheel")
-      p(v-for="i in Array(20)") PREVENT SMALL
-    .demo-area.touch-fixes(@scroll="preventTouch")
-      p(v-for="i in Array(20)") PREVENT SCROLL UNTIL REACHING TOP/BOTTOM
-    .demo-area(@wheel="preventWheel", @touchmove="preventWheel")
-      p(v-for="i in Array(20)") PREVENT ALL
+  debug(v-if="$ops.debug")
 </template>
 
 <script>
+import debug from "./components/debug.vue"
+
 export default {
+
+  components: {
+    debug
+  },
+
   data: function () {
     return {
       wheeling: null,
@@ -45,12 +42,11 @@ export default {
   },
 
   created() {
-    console.log('OPS Layout created')
     this.initRouteNames();
-  },
-
-  mounted() {
     this.addAllEvents();
+
+    this.$ops.preventWheel = this.preventWheel
+    this.$ops.preventTouch = this.preventTouch
   },
 
   beforeRouteUpdate(to, from, next) {
@@ -224,15 +220,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss" scoped>
-.debug {
-  position: fixed;
-  z-index: 9999;
-  top: 0;
-  left: 0;
-  background: blue;
-  opacity: .5;
-  color: white;
-}
-</style>

@@ -1,10 +1,9 @@
 export default {
     install(Vue, options) {
-        const ops = {
+        Vue.prototype.$ops = {
             debug: false,
             ...options
         }
-        Vue.prototype.$ops = ops
     },
 }
 
