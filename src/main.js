@@ -3,9 +3,9 @@ import App from './App.vue'
 import './registerServiceWorker'
 import router from './router'
 
-import ops from '@/plugins/ops'
+import { Ops } from '@/plugins/ops'
 
-Vue.use(ops, {
+Vue.use(Ops, {
   debug: true,
 })
 

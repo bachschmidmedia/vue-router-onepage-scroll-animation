@@ -45,6 +45,7 @@ export default {
   },
 
   created() {
+    console.log('OPS Layout created')
     this.initRouteNames();
   },
 

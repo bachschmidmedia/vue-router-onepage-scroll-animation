@@ -1,7 +1,7 @@
 
 // Parents
 // import Home from '@/views/pages/parents/Home.vue'
-import OpsLayout from '@/plugins/ops/OpsLayout.vue'
+import { OpsLayout } from '@/plugins/ops'
 
 // Children
 import Page1 from '@/views/pages/children/Page1.vue'
