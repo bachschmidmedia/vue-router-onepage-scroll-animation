@@ -189,8 +189,10 @@ export default {
     wheel (event) {
       // if(this.router_locked) return
       let speed;
+      const windowsSteps = (event?.wheelDelta % 120) - 0 == 0;
+
       if (event.wheelDelta) {
-        if ((event.wheelDelta % 120) - 0 == 0) {
+        if (windowsSteps) {
           speed = event.wheelDelta / 120;
         } else {
           speed = event.wheelDelta / 12;
@@ -201,8 +203,15 @@ export default {
       }
 
       if (
-        Math.abs(speed) > 1 &&
-        Math.abs(speed) > Math.abs(this.last_speed) + 2
+        (
+          // Mac sensitive and touch
+          Math.abs(speed) > 1 &&
+          Math.abs(speed) > Math.abs(this.last_speed) + 2
+        ) || (
+          // Windows Test with only pure 100 or 
+         windowsSteps && 
+          (Math.abs(this.last_speed) === 1 || Math.abs(this.last_speed) === 0)
+        )
       ) {
         this.last_speed = speed;
         this.direction = speed > 0 ? -1 : 1;
