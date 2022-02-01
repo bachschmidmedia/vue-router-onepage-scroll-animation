@@ -10,14 +10,12 @@
     router-view
 
   .debug(v-if="$ops.debug")
-    | Jo debug
-    div(style="opacity: 0.5")
-        .demo-area(@scroll="preventWheel", @touchstart="preventWheel")
-          p(v-for="i in Array(20)") PREVENT SMALL
-        .demo-area.touch-fixes(@scroll="preventTouch")
-          p(v-for="i in Array(20)") PREVENT SCROLL UNTIL REACHING TOP/BOTTOM
-        .demo-area(@wheel="preventWheel", @touchmove="preventWheel")
-          p(v-for="i in Array(20)") PREVENT ALL
+    .demo-area(@scroll="preventWheel", @touchstart="preventWheel")
+      p(v-for="i in Array(20)") PREVENT SMALL
+    .demo-area.touch-fixes(@scroll="preventTouch")
+      p(v-for="i in Array(20)") PREVENT SCROLL UNTIL REACHING TOP/BOTTOM
+    .demo-area(@wheel="preventWheel", @touchmove="preventWheel")
+      p(v-for="i in Array(20)") PREVENT ALL
 </template>
 
 <script>
@@ -233,6 +231,7 @@ export default {
   top: 0;
   left: 0;
   background: blue;
+  opacity: .5;
   color: white;
 }
 </style>
