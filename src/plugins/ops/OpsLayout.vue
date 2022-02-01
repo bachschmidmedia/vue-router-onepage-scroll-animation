@@ -1,18 +1,6 @@
 <template lang="pug">
 .scroll-layout
-  div(style="opacity: 0.5")
-    .demo-area(@scroll="preventWheel", @touchstart="preventWheel")
-      p(v-for="i in Array(20)") PREVENT SMALL
-    .demo-area.touch-fixes(@scroll="preventTouch")
-      p(v-for="i in Array(20)") PREVENT SCROLL UNTIL REACHING TOP/BOTTOM
-    .demo-area(@wheel="preventWheel", @touchmove="preventWheel")
-      p(v-for="i in Array(20)") PREVENT ALL
-
-  transition(
-    :name="getTransition('in')",
-    mode="out-in",
-    v-on:leave="onLeave"
-  )
+  transition(:name="getTransition('in')", mode="out-in", v-on:leave="onLeave")
     router-view
   transition(
     :name="getTransition('out')",
@@ -21,12 +9,18 @@
   )
     router-view
 
-  .debug
+  .debug(v-if="$ops.debug")
     | Jo debug
+    div(style="opacity: 0.5")
+        .demo-area(@scroll="preventWheel", @touchstart="preventWheel")
+          p(v-for="i in Array(20)") PREVENT SMALL
+        .demo-area.touch-fixes(@scroll="preventTouch")
+          p(v-for="i in Array(20)") PREVENT SCROLL UNTIL REACHING TOP/BOTTOM
+        .demo-area(@wheel="preventWheel", @touchmove="preventWheel")
+          p(v-for="i in Array(20)") PREVENT ALL
 </template>
 
 <script>
-
 export default {
   data: function () {
     return {
@@ -52,35 +46,34 @@ export default {
     },
   },
 
-  created () {
+  created() {
     this.initRouteNames();
   },
 
-  mounted () {
+  mounted() {
     this.addAllEvents();
   },
 
-  beforeRouteUpdate (to, from, next) {
-    const pages = this.pageNames
-    const dir = pages.indexOf(from.name) < pages.indexOf(to.name) ? 1 : -1
-    this.direction = dir
+  beforeRouteUpdate(to, from, next) {
+    const pages = this.pageNames;
+    const dir = pages.indexOf(from.name) < pages.indexOf(to.name) ? 1 : -1;
+    this.direction = dir;
     next();
   },
 
-  beforeDestroy () {
+  beforeDestroy() {
     this.removeAllEvents();
   },
 
   methods: {
+    getTransition(when) {
+      const trans = this.$route?.meta?.transition ?? "slideY";
+      const dir = this.direction > 0 ? "back" : "next";
 
-    getTransition (when) {
-      const trans = this.$route?.meta?.transition ?? 'slideY'
-      const dir = this.direction > 0 ? 'back' : 'next'
-
-      return `${trans}_${when}_${dir}`
+      return `${trans}_${when}_${dir}`;
     },
 
-    initRouteNames () {
+    initRouteNames() {
       const names = this.$route?.matched?.find((e) => e.meta?.routeNames)?.meta
         ?.routeNames;
       if (names) {
@@ -88,28 +81,28 @@ export default {
       }
     },
 
-    addAllEvents () {
+    addAllEvents() {
       this.events.forEach((e) => {
         window.addEventListener(e.name, e.function);
       });
     },
 
-    removeAllEvents () {
+    removeAllEvents() {
       this.events.forEach((e) => {
         window.removeEventListener(e.name, e.function);
       });
     },
 
-    lockRouter () {
+    lockRouter() {
       this.router_locked = true;
     },
 
-    unlockRouter () {
+    unlockRouter() {
       this.direction = 0;
       this.router_locked = false;
     },
 
-    preventTouch (e) {
+    preventTouch(e) {
       const target = e.target;
       const top = 0;
       const bottom = target.scrollHeight - target.clientHeight;
@@ -139,7 +132,7 @@ export default {
       }, 500);
     },
 
-    preventWheel () {
+    preventWheel() {
       this.lockRouter();
 
       clearTimeout(this.preventer);
@@ -150,11 +143,11 @@ export default {
       }, 250);
     },
 
-    touchStart (e) {
+    touchStart(e) {
       this.ts = e.touches[0].clientY;
     },
 
-    touchMove (e) {
+    touchMove(e) {
       var te = e.changedTouches[0].clientY;
       if (this.ts > te + 5) {
         const dir = 1;
@@ -167,7 +160,7 @@ export default {
       }
     },
 
-    wheel (event) {
+    wheel(event) {
       // if(this.router_locked) return
       let speed;
       const windowsSteps = (event?.wheelDelta % 120) - 0 == 0;
@@ -184,15 +177,12 @@ export default {
       }
 
       if (
-        (
-          // Mac sensitive and touch
-          Math.abs(speed) > 1 &&
-          Math.abs(speed) > Math.abs(this.last_speed) + 2
-        ) || (
-          // Windows Test with only pure 100 or 
-         windowsSteps && 
-          (Math.abs(this.last_speed) === 1 || Math.abs(this.last_speed) === 0)
-        )
+        // Mac sensitive and touch
+        (Math.abs(speed) > 1 &&
+          Math.abs(speed) > Math.abs(this.last_speed) + 2) ||
+        // Windows Test with only pure 100 or
+        (windowsSteps &&
+          (Math.abs(this.last_speed) === 1 || Math.abs(this.last_speed) === 0))
       ) {
         this.last_speed = speed;
         this.direction = speed > 0 ? -1 : 1;
@@ -206,9 +196,9 @@ export default {
       }, 100);
     },
 
-    tryScrollTo () {
+    tryScrollTo() {
       if (!this.router_locked) {
-        const dir = this.direction
+        const dir = this.direction;
         setTimeout(() => {
           if (!this.router_locked) {
             const currIndex = this.pageNames.findIndex(
@@ -225,11 +215,11 @@ export default {
       }
     },
 
-    onLeave () {
+    onLeave() {
       this.lockRouter();
     },
 
-    afterLeave () {
+    afterLeave() {
       this.unlockRouter();
     },
   },

@@ -1,8 +1,7 @@
 
 // Parents
 // import Home from '@/views/pages/parents/Home.vue'
-import ScrollLayout from '@/views/layouts/ScrollLayout.vue'
-
+import OpsLayout from '@/plugins/ops/OpsLayout.vue'
 
 // Children
 import Page1 from '@/views/pages/children/Page1.vue'
@@ -16,7 +15,7 @@ let routes = [
     path: '/home',
     name: 'Home',
     // component: Home,
-    component: ScrollLayout,
+    component: OpsLayout,
     meta: {
       routeNames: ['Page1', 'Page2', 'Page3', 'Page4']
     },
