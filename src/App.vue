@@ -1,18 +1,18 @@
 <template lang="pug">
 #app
-  Navigation
+  //- Navigation
   //- ScrollLayout
   router-view
 </template>
 
 <script>
-import Navigation from '@/components/Navigation.vue'
+// import Navigation from '@/components/Navigation.vue'
 // import ScrollLayout from '@/views/layouts/ScrollLayout.vue'
 
 export default {
 
   components: {
-    Navigation,
+    // Navigation,
     // ScrollLayout
   },
 

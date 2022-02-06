@@ -5,15 +5,22 @@
   transition(:name="getTransition('out')" mode="out-in" v-on:after-leave="afterLeave")
     router-view
 
-  debug(v-if="$ops.debug")
+  Menu(
+    v-if="$ops.menu"
+    :pages="pageNames"
+  )
+
+  Debug(v-if="$ops.debug")
 </template>
 
 <script>
-import debug from "./components/debug.vue"
+import Debug from "./components/debug.vue"
+import Menu from "./components/menu.vue"
 
 export default {
   components: {
-    debug
+    Debug,
+    Menu,
   },
 
   data: function () {
@@ -46,6 +53,12 @@ export default {
 
     this.$ops.preventWheel = this.preventWheel
     this.$ops.preventTouch = this.preventTouch
+
+    this.$router.beforeEach((to, from, next) => {
+      if(!this.router_locked) {
+        next();
+      }
+    })
   },
 
   beforeRouteUpdate(to, from, next) {

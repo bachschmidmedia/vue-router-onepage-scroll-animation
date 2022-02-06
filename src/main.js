@@ -7,6 +7,7 @@ import Ops from '@/plugins/ops'
 
 Vue.use(Ops, {
   debug: true,
+  menu: true,
 })
 
 Vue.config.productionTip = false
