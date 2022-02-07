@@ -7,8 +7,10 @@ main
     div jo
     div jo
     div jo
+    div(v-if="!$ops.loading") JOGHURT 1
+    transition(name="fade")
+      p(v-if="$ops.loaded") hello
     input
-    div jo
     div jo
     .debug
       .demo-area(@scroll="$ops.preventWheel", @touchstart="$ops.preventWheel")
@@ -21,7 +23,26 @@ main
 
 <script>
 export default {
-  name: 'Page1'
+  name: 'Page1',
+
+  data () {
+    return {
+      // loading: false,
+    }
+  },
+
+  created () {
+    // setTimeout(() => {
+    //   this.loading = false
+    //   console.log('joghrutmeiyer')
+    // }, 2000);
+  },
+
+  mounted () {
+    setTimeout(() => {
+      // this.loading = true
+    }, 100);
+  },
 }
 </script>
 

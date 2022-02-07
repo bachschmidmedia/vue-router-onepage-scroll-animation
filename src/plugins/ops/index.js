@@ -3,6 +3,7 @@ export default {
     // Globals $ops
     Vue.prototype.$ops = {
       debug: false,
+      loading: false,
       ...options,
     };
 

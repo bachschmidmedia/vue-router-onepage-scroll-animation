@@ -55,7 +55,7 @@ export default {
     this.$ops.preventTouch = this.preventTouch
 
     this.$router.beforeEach((to, from, next) => {
-      if(!this.router_locked) {
+      if(!this.$ops.router_locked) {
         next();
       }
     })
@@ -101,12 +101,14 @@ export default {
     },
 
     lockRouter() {
-      this.router_locked = true;
+      this.$ops.router_locked = true;
+      this.$ops.loaded = false;
     },
 
     unlockRouter() {
       this.direction = 0;
-      this.router_locked = false;
+      this.$ops.router_locked = false;
+      this.$ops.loaded = true;
     },
 
     preventTouch(e) {
@@ -168,7 +170,7 @@ export default {
     },
 
     wheel(event) {
-      // if(this.router_locked) return
+      // if(this.$ops.router_locked) return
       let speed;
       const windowsSteps = (event?.wheelDelta % 120) - 0 == 0;
 
@@ -204,10 +206,10 @@ export default {
     },
 
     tryScrollTo() {
-      if (!this.router_locked) {
+      if (!this.$ops.router_locked) {
         const dir = this.direction;
         setTimeout(() => {
-          if (!this.router_locked) {
+          if (!this.$ops.router_locked) {
             const currIndex = this.pageNames.findIndex(
               (x) => x === this.$route.name
             );
