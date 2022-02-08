@@ -6,12 +6,17 @@ main
     router-link(:to="{name: 'Page3'}") Page 3
     div jo
     div jo
-    div jo
-    div(v-if="!$ops.loading") JOGHURT 1
-    transition(name="fade")
-      p(v-if="$ops.loaded") hello
     input
     div jo
+
+    transition(name="fade")
+      p(v-if="loaded") BOTH
+
+    //- div jo
+    //- div(v-if="$ops.loaded === true") JOGHURT 1
+    //- transition(name="fade")
+    //-   p(v-if="$ops.loaded === true") hello global
+
     .debug
       .demo-area(@scroll="$ops.preventWheel", @touchstart="$ops.preventWheel")
         p(v-for="i in Array(20)") PREVENT SMALL
@@ -27,22 +32,21 @@ export default {
 
   data () {
     return {
-      // loading: false,
+      bLoaded: false,
     }
   },
 
-  created () {
-    // setTimeout(() => {
-    //   this.loading = false
-    //   console.log('joghrutmeiyer')
-    // }, 2000);
+  computed: {
+    loaded: function () {
+      return this.$ops.loaded && this.bLoaded
+    }
   },
 
   mounted () {
-    setTimeout(() => {
-      // this.loading = true
-    }, 100);
+    this.bLoaded = true
   },
+
+
 }
 </script>
 

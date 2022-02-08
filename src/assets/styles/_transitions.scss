@@ -31,26 +31,26 @@
 /* ================================
 ============ Slide Y ==============
 ================================ */
-@include transition_function('slideY', 'out', 'back', 1s ease-in, transform, translateY(0%), translateY(-100%), translateY(100%));
-@include transition_function('slideY', 'out', 'next', 1s ease-in, transform, translateY(0%), translateY(100%), translateY(100%));
-@include transition_function('slideY', 'in', 'back', 1s ease-out, transform, translateY(100%), translateY(0%), translateY(0%));
-@include transition_function('slideY', 'in', 'next', 1s ease-out, transform, translateY(-100%), translateY(0%), translateY(0%));
+@include transition_function('slideY', 'out', 'back',  1s ease-in, transform, translateY(0%), translateY(-100%), translateY(100%));
+@include transition_function('slideY', 'out', 'next',  1s ease-in, transform, translateY(0%), translateY(100%), translateY(100%));
+@include transition_function('slideY', 'in', 'back',   1s ease-out, transform, translateY(100%), translateY(0%), translateY(0%));
+@include transition_function('slideY', 'in', 'next',   1s ease-out, transform, translateY(-100%), translateY(0%), translateY(0%));
 
-@include transition_function('slideX', 'out', 'back', 1s ease-in, transform, translateX(0%), translateX(-100%), translateX(100%));
-@include transition_function('slideX', 'out', 'next', 1s ease-in, transform, translateX(0%), translateX(100%), translateX(100%));
-@include transition_function('slideX', 'in', 'back', 1s ease-out, transform, translateX(100%), translateX(0%), translateX(0%));
-@include transition_function('slideX', 'in', 'next', 1s ease-out, transform, translateX(-100%), translateX(0%), translateX(0%));
+@include transition_function('slideX', 'out', 'back',  1s ease-in, transform, translateX(0%), translateX(-100%), translateX(100%));
+@include transition_function('slideX', 'out', 'next',  1s ease-in, transform, translateX(0%), translateX(100%), translateX(100%));
+@include transition_function('slideX', 'in', 'back',   1s ease-out, transform, translateX(100%), translateX(0%), translateX(0%));
+@include transition_function('slideX', 'in', 'next',   1s ease-out, transform, translateX(-100%), translateX(0%), translateX(0%));
 
-@include transition_function('fade', 'out', 'back', 1s ease-in, opacity, 1, 0, 0);
-@include transition_function('fade', 'out', 'next', 1s ease-in, opacity, 1, 0, 0);
-@include transition_function('fade', 'in', 'back', 1s ease-out, opacity, 0, 1, 1);
-@include transition_function('fade', 'in', 'next', 1s ease-out, opacity, 0, 1, 1);
+@include transition_function('fade', 'out', 'back',    1s ease-in, opacity, 1, 0, 0);
+@include transition_function('fade', 'out', 'next',    1s ease-in, opacity, 1, 0, 0);
+@include transition_function('fade', 'in', 'back',     1s ease-out, opacity, 0, 1, 1);
+@include transition_function('fade', 'in', 'next',     1s ease-out, opacity, 0, 1, 1);
 
 
 
 
 .fade-enter-active, .fade-leave-active {
-  transition: opacity .5s;
+  transition: 2s;
 }
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
   opacity: 0;
